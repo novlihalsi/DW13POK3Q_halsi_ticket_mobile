@@ -26,9 +26,13 @@ class Footers extends Component {
             <Icon style={styles.Icon} name="appstore-o" />
           </Button>
           <Button active transparent>
-            <Icon style={styles.Icon} active name="search1" />
+            <Icon style={styles.Icon} active name="creditcard" />
           </Button>
-          <Button transparent>
+          <Button
+            transparent
+            onPress={() => {
+              this.props.navigation.navigate('Profile');
+            }}>
             <Icons style={styles.Icon} name="account-circle-outline" />
           </Button>
         </FooterTab>
@@ -42,15 +46,15 @@ export default withNavigation(Footers);
 
 const styles = StyleSheet.create({
   Footer: {
-    height: 40,
+    height: 50,
   },
 
   FooterTab: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#062639',
   },
 
   Icon: {
-    color: '#EF233C',
+    color: '#fcfcfc',
     fontSize: 20,
   },
 });

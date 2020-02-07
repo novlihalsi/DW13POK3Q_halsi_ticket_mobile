@@ -1,60 +1,51 @@
 import React, {Component} from 'react';
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import Home from './src/screens/Home';
-import EventDetail from './src/screens/EventDetail';
-import Category from './src/screens/Category';
-import CategoryPage from './src/screens/CategoryPage';
-const AppNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        title: 'Halsi Ticket',
+import AppStack from './src/screens/private/index';
+import Login from './src/screens/Login';
+import {GetAuth} from './src/config/auth';
 
-        headerStyle: {
-          backgroundColor: '#EF233C',
-        },
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: [],
+    };
+  }
+  componentDidMount() {
+    GetAuth().then(res => {
+      this.setState({
+        user: res,
+      });
+    });
+  }
 
-        headerTintColor: 'white',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      },
+  render() {
+    const {user} = this.state;
+    return !user ? <RootNavigationNotLogin /> : <RootNavigationLogin />;
+  }
+}
+const RootNavigationNotLogin = createAppContainer(
+  createSwitchNavigator(
+    {
+      Auth: Login,
+      App: AppStack,
     },
-    Category: {
-      screen: Category,
-      navigationOptions: {
-        title: 'Category',
-      },
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-
-      headerTintColor: '#EF233C',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+    {
+      initialRouteName: 'Auth',
     },
-    EventDetail: {
-      screen: EventDetail,
-      navigationOptions: {
-        title: 'EventDetail',
-      },
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-
-      headerTintColor: '#EF233C',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  },
+  ),
 );
 
-export default createAppContainer(AppNavigator);
+const RootNavigationLogin = createAppContainer(
+  createSwitchNavigator(
+    {
+      Auth: Login,
+      App: AppStack,
+    },
+    {
+      initialRouteName: 'App',
+    },
+  ),
+);
+export default App;

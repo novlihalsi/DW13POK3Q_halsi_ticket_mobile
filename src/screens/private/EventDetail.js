@@ -28,7 +28,9 @@ class EventDetail extends Component {
     const {navigation} = this.props;
     const id = JSON.stringify(navigation.getParam('itemId'));
     axios
-      .get(`http://192.168.1.63:5000/api/v1/events/${id}/detailevent`)
+      .get(
+        `https://halsiticket-api.herokuapp.com/api/v1/events/${id}/detailevent`,
+      )
       .then(res => {
         this.setState({eventdetail: res.data});
       });
@@ -132,11 +134,11 @@ const styles = StyleSheet.create({
 
   Title: {
     fontSize: 30,
-    color: '#EF233C',
+    color: '#e7301c',
   },
 
   Icons: {
-    color: '#EF233C',
+    color: '#e7301c',
     marginLeft: 20,
   },
 
@@ -147,7 +149,6 @@ const styles = StyleSheet.create({
 
   Favoriteicon: {
     fontSize: 30,
-    color: '#EF233C',
   },
 
   images: {
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   },
 
   ButtonBuy: {
-    backgroundColor: '#EF233C',
+    backgroundColor: '#e7301c',
     borderRadius: 20,
   },
 

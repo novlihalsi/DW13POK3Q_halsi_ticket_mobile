@@ -19,19 +19,19 @@ class Headers extends Component {
   render() {
     return (
       <View>
-        <Header
+        {/* <Header
           noShadow
           searchBar
           rounded
           transparent
-          androidStatusBarColor="#EF233C">
-          {/* // style={{backgroundColor: '#EF233C'}} */}
-          {/* <Left>
+          androidStatusBarColor="#EF233C"> */}
+        {/* // style={{backgroundColor: '#EF233C'}} */}
+        {/* <Left>
           <Button transparent>
             <Icon name="arrow-back" />
           </Button>
         </Left> */}
-          <Body>
+        {/* <Body>
             <Title style={{color: '#EF233C'}}>Halsi Ticket</Title>
           </Body>
           <Right>
@@ -39,18 +39,18 @@ class Headers extends Component {
               <Icon name="ios-log-in" style={{color: '#EF233C'}} />
             </Button>
           </Right>
-        </Header>
-        {/* <Header
+        </Header> */}
+        <Header
           noShadow
           searchBar
           rounded
-          androidStatusBarColor="#EF233C"
-          style={{backgroundColor: '#EF233C'}}>
+          androidStatusBarColor="#062639"
+          style={{backgroundColor: '#062639'}}>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" />
           </Item>
-        </Header> */}
+        </Header>
       </View>
     );
   }

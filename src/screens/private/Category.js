@@ -10,7 +10,7 @@ export class OneCategory extends Component {
     return (
       <Content>
         <List>
-          <ListItem>
+          <ListItem onPress={this.props.getId}>
             <Text>{this.props.name}</Text>
           </ListItem>
         </List>
@@ -27,14 +27,24 @@ class Category extends Component {
     };
   }
 
+  handlePressCategory = id => () => {
+    this.props.navigation.navigate('CategoryPage', {
+      itemId: id,
+    });
+  };
+
   renderCategory = ({item}) => {
-    return <OneCategory name={item.name} />;
+    return (
+      <OneCategory getId={this.handlePressCategory(item.id)} name={item.name} />
+    );
   };
 
   componentDidMount() {
-    axios.get('http://192.168.1.63:5000/api/v1/categories').then(res => {
-      this.setState({categories: res.data});
-    });
+    axios
+      .get('https://halsiticket-api.herokuapp.com/api/v1/categories')
+      .then(res => {
+        this.setState({categories: res.data});
+      });
   }
 
   render() {
@@ -46,6 +56,7 @@ class Category extends Component {
         <FlatList
           data={this.state.categories}
           renderItem={this.renderCategory}
+          keyExtractor={item => item.id.toString()}
         />
       </Container>
     );
@@ -63,6 +74,6 @@ const styles = StyleSheet.create({
 
   textTitle: {
     fontSize: 30,
-    color: '#EF233C',
+    color: '#e7301c',
   },
 });

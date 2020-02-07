@@ -30,16 +30,17 @@ class Event extends Component {
           />
 
           <Body style={{flex: 4, padding: 5}}>
-            <Text>{this.props.title}</Text>
-            <Text>Rp. {this.props.price}</Text>
-            <Text>{this.props.date}</Text>
+            <Text
+              onPress={this.props.getId}
+              style={{fontSize: 20, fontWeight: 'bold', marginBottom: 20}}>
+              {this.props.title}
+            </Text>
+            {/* <Text style={{color: '#e7301c'}}>Rp. {this.props.price}</Text> */}
+            <Text style={{color: '#e7301c'}}>{this.props.date}</Text>
           </Body>
           <Right style={{alignSelf: 'flex-end'}}>
             <Button transparent>
-              <Icon
-                name="favorite-border"
-                style={{fontSize: 20, color: '#EF233C'}}
-              />
+              <Icon name="favorite-border" style={{fontSize: 20}} />
             </Button>
           </Right>
         </CardItem>
